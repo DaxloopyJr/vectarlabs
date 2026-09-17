@@ -53,11 +53,60 @@ return new class extends Migration
 
         Schema::create('team_members', function (Blueprint $table) {
             $table->id();
+            $table->string('slug', 160)->unique();
             $table->string('name');
             $table->string('role');
             $table->text('bio')->nullable();
             $table->text('photo_url')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone', 60)->nullable();
+            $table->string('website')->nullable();
             $table->string('linkedin')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('github')->nullable();
+            $table->integer('sort_order')->default(0);
+            $table->boolean('published')->default(true);
+            $table->timestamps();
+        });
+
+        Schema::create('products', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('type', 20)->default('saas'); // saas | standalone
+            $table->string('tagline')->nullable();
+            $table->text('description')->nullable();
+            $table->integer('sort_order')->default(0);
+            $table->boolean('published')->default(true);
+            $table->timestamps();
+        });
+
+        Schema::create('industries', function (Blueprint $table) {
+            $table->id();
+            $table->string('slug', 160)->unique();
+            $table->string('name');
+            $table->string('icon', 60)->default('briefcase');
+            $table->string('tagline')->nullable();
+            $table->text('summary')->nullable();
+            $table->text('description')->nullable();
+            $table->text('offerings')->nullable(); // newline separated
+            $table->integer('sort_order')->default(0);
+            $table->boolean('published')->default(true);
+            $table->timestamps();
+        });
+
+        Schema::create('works', function (Blueprint $table) {
+            $table->id();
+            $table->string('slug', 160)->unique();
+            $table->string('title');
+            $table->string('client')->nullable();
+            $table->string('category', 120)->nullable();
+            $table->string('industry', 120)->nullable();
+            $table->string('year', 10)->nullable();
+            $table->text('summary')->nullable();
+            $table->text('description')->nullable();
+            $table->string('tags')->nullable(); // comma separated
+            $table->text('image_url')->nullable();
+            $table->boolean('featured')->default(false);
             $table->integer('sort_order')->default(0);
             $table->boolean('published')->default(true);
             $table->timestamps();
@@ -88,6 +137,9 @@ return new class extends Migration
 
     public function down(): void
     {
+        Schema::dropIfExists('works');
+        Schema::dropIfExists('industries');
+        Schema::dropIfExists('products');
         Schema::dropIfExists('contact_messages');
         Schema::dropIfExists('posts');
         Schema::dropIfExists('team_members');

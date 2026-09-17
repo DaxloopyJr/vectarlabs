@@ -12,20 +12,22 @@
         <div class="row g-4 mt-2">
             <?php $__currentLoopData = $members; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $i => $m): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="col-md-6 col-lg-4">
-                    <div class="card-soft p-4">
+                    <div class="card-soft hoverable p-4 text-center">
                         <?php if($m->photo_url): ?>
-                            <img src="<?php echo e($m->photo_url); ?>" alt="<?php echo e($m->name); ?>" class="rounded-4" style="width: 64px; height: 64px; object-fit: cover;">
+                            <img src="<?php echo e($m->photo_url); ?>" alt="<?php echo e($m->name); ?>" class="rounded-4" style="width: 120px; height: 120px; object-fit: cover;">
                         <?php else: ?>
-                            <span class="avatar-initials <?php echo e($i % 2 ? 'alt' : ''); ?>"><?php echo e($m->initials()); ?></span>
+                            <span class="avatar-initials <?php echo e($i % 2 ? 'alt' : ''); ?>" style="width: 120px; height: 120px; font-size: 2.2rem;"><?php echo e($m->initials()); ?></span>
                         <?php endif; ?>
                         <h5 class="font-display fw-bold text-navy mt-3 mb-0"><?php echo e($m->name); ?></h5>
                         <p class="text-brand fw-bold text-uppercase mb-2" style="font-size: .72rem; letter-spacing: .12em;"><?php echo e($m->role); ?></p>
-                        <?php if($m->bio): ?><p class="small text-secondary mb-0"><?php echo e($m->bio); ?></p><?php endif; ?>
-                        <?php if($m->linkedin): ?>
-                            <a href="<?php echo e($m->linkedin); ?>" target="_blank" class="small fw-semibold text-secondary d-inline-flex align-items-center gap-1 mt-3">
-                                <i class="bi bi-linkedin"></i> LinkedIn
-                            </a>
-                        <?php endif; ?>
+                        <?php if($m->bio): ?><p class="small text-secondary mb-0"><?php echo e(Str::limit($m->bio, 140)); ?></p><?php endif; ?>
+                        <div class="d-flex justify-content-center gap-3 mt-3">
+                            <?php if($m->email): ?><a href="mailto:<?php echo e($m->email); ?>" class="text-secondary"><i class="bi bi-envelope"></i></a><?php endif; ?>
+                            <?php if($m->linkedin): ?><a href="<?php echo e($m->linkedin); ?>" target="_blank" class="text-secondary"><i class="bi bi-linkedin"></i></a><?php endif; ?>
+                            <?php if($m->twitter): ?><a href="<?php echo e($m->twitter); ?>" target="_blank" class="text-secondary"><i class="bi bi-twitter-x"></i></a><?php endif; ?>
+                            <?php if($m->github): ?><a href="<?php echo e($m->github); ?>" target="_blank" class="text-secondary"><i class="bi bi-github"></i></a><?php endif; ?>
+                        </div>
+                        <a href="<?php echo e(route('team.show', $m->slug)); ?>" class="small fw-bold text-brand text-decoration-none d-inline-block mt-3">View full profile <i class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

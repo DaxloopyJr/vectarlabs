@@ -59,16 +59,18 @@
         <div class="row g-4 mt-2">
             @foreach($posts as $post)
                 <div class="col-md-6">
-                    <article class="card-soft p-4">
-                        <span class="text-brand fw-bold" style="font-size: .68rem; letter-spacing: .15em; text-transform: uppercase;">{{ $post->tag }}</span>
-                        <h5 class="font-display fw-bold text-navy mt-2">{{ $post->title }}</h5>
-                        <p class="small text-secondary mb-0">{{ $post->excerpt }}</p>
-                    </article>
+                    <a href="{{ route('insights.show', $post->id) }}" class="text-decoration-none">
+                        <article class="card-soft hoverable p-4">
+                            <span class="text-brand fw-bold" style="font-size: .68rem; letter-spacing: .15em; text-transform: uppercase;">{{ $post->tag }}</span>
+                            <h5 class="font-display fw-bold text-navy mt-2">{{ $post->title }}</h5>
+                            <p class="small text-secondary mb-0">{{ $post->excerpt }}</p>
+                        </article>
+                    </a>
                 </div>
             @endforeach
         </div>
         <div class="text-center mt-5">
-            <a href="{{ route('contact') }}" class="btn-brand">See all insights <i class="bi bi-arrow-right"></i></a>
+            <a href="{{ route('insights') }}" class="btn-brand">See all insights <i class="bi bi-arrow-right"></i></a>
         </div>
     </div>
 </section>

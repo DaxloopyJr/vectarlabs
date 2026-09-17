@@ -11,6 +11,9 @@
 <div class="row g-3">
     @foreach([
         ['Services', $services, 'tools', route('admin.services.index')],
+        ['Industries', $industries, 'building', route('admin.industries.index')],
+        ['Products', $products, 'box-seam', route('admin.products.index')],
+        ['Projects', $works, 'kanban', route('admin.works.index')],
         ['Team members', $team, 'people', route('admin.team.index')],
         ['Insight articles', $posts, 'file-text', route('admin.posts.index')],
         ['Unread messages', $unread, 'inbox', route('admin.messages.index')],

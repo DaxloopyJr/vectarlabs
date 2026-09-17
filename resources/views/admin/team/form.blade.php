@@ -23,16 +23,40 @@
             <input name="role" class="form-control" required value="{{ old('role', $member->role) }}">
         </div>
         <div class="col-12">
-            <label class="form-label small fw-bold">Bio</label>
-            <textarea name="bio" rows="3" class="form-control">{{ old('bio', $member->bio) }}</textarea>
+            <label class="form-label small fw-bold">Slug (auto if empty)</label>
+            <input name="slug" class="form-control" value="{{ old('slug', $member->slug) }}" placeholder="victor-karanja">
+        </div>
+        <div class="col-12">
+            <label class="form-label small fw-bold">Bio / Biography (blank line between paragraphs)</label>
+            <textarea name="bio" rows="5" class="form-control">{{ old('bio', $member->bio) }}</textarea>
         </div>
         <div class="col-sm-6">
             <label class="form-label small fw-bold">Photo URL (optional)</label>
             <input name="photo_url" class="form-control" value="{{ old('photo_url', $member->photo_url) }}" placeholder="https://…">
         </div>
         <div class="col-sm-6">
+            <label class="form-label small fw-bold">Email</label>
+            <input name="email" class="form-control" value="{{ old('email', $member->email) }}" placeholder="name@vectarlabs.com">
+        </div>
+        <div class="col-sm-6">
+            <label class="form-label small fw-bold">Phone</label>
+            <input name="phone" class="form-control" value="{{ old('phone', $member->phone) }}" placeholder="+254 …">
+        </div>
+        <div class="col-sm-6">
+            <label class="form-label small fw-bold">Website</label>
+            <input name="website" class="form-control" value="{{ old('website', $member->website) }}" placeholder="https://…">
+        </div>
+        <div class="col-sm-4">
             <label class="form-label small fw-bold">LinkedIn URL</label>
             <input name="linkedin" class="form-control" value="{{ old('linkedin', $member->linkedin) }}" placeholder="https://linkedin.com/in/…">
+        </div>
+        <div class="col-sm-4">
+            <label class="form-label small fw-bold">X / Twitter URL</label>
+            <input name="twitter" class="form-control" value="{{ old('twitter', $member->twitter) }}" placeholder="https://x.com/…">
+        </div>
+        <div class="col-sm-4">
+            <label class="form-label small fw-bold">GitHub URL</label>
+            <input name="github" class="form-control" value="{{ old('github', $member->github) }}" placeholder="https://github.com/…">
         </div>
         <div class="col-sm-3">
             <label class="form-label small fw-bold">Sort order</label>

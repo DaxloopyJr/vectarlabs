@@ -1,19 +1,77 @@
 <?php $__env->startSection('content'); ?>
 <?php ($S = fn (string $k, string $d = '') => \App\Models\Setting::get($k, $d)); ?>
+<?php ($slides = [
+    [
+        'badge' => $S('home.hero.eyebrow', 'Software · Cloud · Design'),
+        'title1' => $S('home.hero.title1', 'Building High-Impact'),
+        'title2' => $S('home.hero.title2', 'Digital Infrastructure for'),
+        'title3' => $S('home.hero.title3', 'Growing Enterprises'),
+        'lead' => $S('home.hero.subtitle'),
+        'cta' => $S('home.hero.button', 'Book Consultation'),
+        'to' => route('contact'),
+        'chips' => ['Custom Web Platforms', 'Cloud Infrastructure', 'Mobile Applications'],
+    ],
+    [
+        'badge' => 'Software In Stock',
+        'title1' => 'Ready-made products,',
+        'title2' => 'deployed',
+        'title3' => 'in days.',
+        'lead' => 'SaaS subscriptions and standalone licenses for school management, SACCO operations, retail POS, clinics, and field data — proven platforms, not promises.',
+        'cta' => 'Explore Products',
+        'to' => route('products'),
+        'chips' => ['EduSphere SMS', 'SaccoFlow', 'StockPilot Pro'],
+    ],
+    [
+        'badge' => 'Sector Expertise',
+        'title1' => 'Technology shaped',
+        'title2' => 'for',
+        'title3' => 'your industry.',
+        'lead' => 'Education, agriculture, fintech, health, enterprise, and NGOs — we build systems around the realities of each sector, not generic templates.',
+        'cta' => 'Explore Industries',
+        'to' => route('industries'),
+        'chips' => ['Education', 'AgriTech', 'Fintech & SACCOs'],
+    ],
+    [
+        'badge' => 'Proven Delivery',
+        'title1' => 'Work that speaks',
+        'title2' => 'in',
+        'title3' => 'results.',
+        'lead' => 'From 12-campus school groups to 40,000-member SACCOs — browse case studies of platforms we designed, shipped, and still support today.',
+        'cta' => 'See Our Work',
+        'to' => route('works'),
+        'chips' => ['25+ Projects', '99.4% Uptime', '1M+ Daily Requests'],
+    ],
+]); ?>
 
 
-<section class="text-center" style="padding: 11rem 0 5rem;">
+<section class="hero-slider">
     <div class="container">
-        <p class="section-marker centered"><?php echo e($S('home.hero.eyebrow', 'Software · Cloud · Design')); ?></p>
-        <h1 class="display-hero text-navy mx-auto mt-4" style="max-width: 48rem; font-size: clamp(2.4rem, 5.5vw, 3.8rem);">
-            <?php echo e($S('home.hero.title1', 'Building High-Impact')); ?><br>
-            <?php echo e($S('home.hero.title2', 'Digital Infrastructure for')); ?><br>
-            <span class="text-brand"><?php echo e($S('home.hero.title3', 'Growing Enterprises')); ?></span>
-        </h1>
-        <p class="font-serif-body mx-auto mt-4 text-secondary" style="max-width: 38rem;"><?php echo e($S('home.hero.subtitle')); ?></p>
-        <a href="<?php echo e(route('contact')); ?>" class="btn-dark-pill mt-4 px-4 py-3"><?php echo e($S('home.hero.button', 'Book Consultation')); ?></a>
-        <div class="d-flex flex-wrap justify-content-center gap-4 mt-5 small fw-semibold text-secondary">
-            <span>Custom Web Platforms</span><span>Cloud Infrastructure</span><span>Mobile Applications</span>
+        <div class="hero-slides-wrap mx-auto" style="max-width: 52rem;">
+            <?php $__currentLoopData = $slides; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $i => $slide): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <div class="hero-slide <?php echo e($i ? 'hidden-slide' : ''); ?>" data-slide="<?php echo e($i); ?>">
+                    <span class="hero-badge"><?php echo e($slide['badge']); ?></span>
+                    <h1 class="display-hero text-white mx-auto mt-4" style="font-size: clamp(2rem, 5.5vw, 3.6rem);">
+                        <?php echo e($slide['title1']); ?><br>
+                        <?php echo e($slide['title2']); ?> <span class="text-brand"><?php echo e($slide['title3']); ?></span>
+                    </h1>
+                    <p class="font-serif-body mx-auto mt-4" style="max-width: 38rem; color: rgba(255,255,255,.65);"><?php echo e($slide['lead']); ?></p>
+                    <a href="<?php echo e($slide['to']); ?>" class="btn-brand mt-4"><?php echo e($slide['cta']); ?> <i class="bi bi-arrow-right"></i></a>
+                    <div class="d-flex flex-wrap justify-content-center gap-2 mt-5">
+                        <?php $__currentLoopData = $slide['chips']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $chip): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <span class="hero-chip"><?php echo e($chip); ?></span>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </div>
+                </div>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </div>
+        <div class="d-flex align-items-center justify-content-center gap-3 mt-4">
+            <button class="slider-arrow" id="slidePrev" aria-label="Previous slide"><i class="bi bi-chevron-left"></i></button>
+            <div class="d-flex gap-2">
+                <?php $__currentLoopData = $slides; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $i => $slide): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <button class="slider-dot <?php echo e($i ? '' : 'active'); ?>" data-goto="<?php echo e($i); ?>" aria-label="Go to slide <?php echo e($i + 1); ?>"></button>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </div>
+            <button class="slider-arrow" id="slideNext" aria-label="Next slide"><i class="bi bi-chevron-right"></i></button>
         </div>
     </div>
 </section>
@@ -61,20 +119,19 @@
         <p class="section-marker centered">Industries</p>
         <h2 class="display-hero text-navy text-center mx-auto mt-3" style="max-width: 42rem; font-size: clamp(1.8rem, 3.5vw, 2.5rem);"><?php echo e($S('home.sectors.title')); ?></h2>
         <div class="row g-4 mt-3">
-            <?php $__currentLoopData = [
-                ['Fintech & Commerce', 'Secure payment integrations, SACCO platforms, and inventory systems built for African markets.'],
-                ['Education & Schools', 'Complete school management systems — admissions, fee tracking, and academic reporting.'],
-                ['AgriTech & Supply Chain', 'Farm-to-market traceability tools, USSD services, and logistics dashboards for rural networks.'],
-                ['NGOs & Public Sector', 'Transparent reporting portals, M&E dashboards, and community data-collection platforms.'],
-            ]; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as [$name, $body]): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php $__currentLoopData = $industries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ind): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="col-sm-6 col-lg-3">
-                    <div class="card-soft p-4">
-                        <h6 class="font-display fw-bold text-brand"><?php echo e($name); ?></h6>
-                        <p class="small text-secondary mb-0"><?php echo e($body); ?></p>
-                    </div>
+                    <a href="<?php echo e(route('industries.show', $ind->slug)); ?>" class="text-decoration-none">
+                        <div class="card-soft hoverable p-4">
+                            <span class="icon-chip mb-3"><i class="bi <?php echo e($ind->iconClass()); ?>"></i></span>
+                            <h6 class="font-display fw-bold text-navy"><?php echo e($ind->name); ?></h6>
+                            <p class="small text-secondary mb-0"><?php echo e($ind->summary); ?></p>
+                        </div>
+                    </a>
                 </div>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
+        <p class="text-center mt-4"><a href="<?php echo e(route('industries')); ?>" class="fw-bold text-brand text-decoration-none">Explore all industries <i class="bi bi-arrow-right"></i></a></p>
     </div>
 </section>
 
@@ -136,19 +193,26 @@
 
 <section class="py-5">
     <div class="container" style="max-width: 72rem;">
-        <p class="section-marker">Insights</p>
-        <h2 class="display-hero text-navy mt-3" style="font-size: clamp(1.8rem, 3.5vw, 2.4rem);">Latest thinking in technology &amp; digital design</h2>
+        <div class="d-flex justify-content-between align-items-end">
+            <div>
+                <p class="section-marker">Insights</p>
+                <h2 class="display-hero text-navy mt-3 mb-0" style="font-size: clamp(1.8rem, 3.5vw, 2.4rem);">Latest thinking in technology &amp; digital design</h2>
+            </div>
+            <a href="<?php echo e(route('insights')); ?>" class="fw-bold text-brand text-decoration-none d-none d-md-inline">View all articles <i class="bi bi-arrow-right"></i></a>
+        </div>
         <div class="row g-4 mt-2">
             <?php $__currentLoopData = $posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="col-md-4">
-                    <article class="card-soft overflow-hidden">
-                        <div class="abstract-panel panel-<?php echo e(substr($post->cover_style, -1)); ?>" style="height: 11rem; border-radius: 0;"></div>
-                        <div class="p-4">
-                            <span class="text-brand fw-bold" style="font-size: .68rem; letter-spacing: .15em; text-transform: uppercase;"><?php echo e($post->tag); ?></span>
-                            <h6 class="font-display fw-bold text-navy mt-2"><?php echo e($post->title); ?></h6>
-                            <p class="small text-secondary mb-0"><?php echo e($post->excerpt); ?></p>
-                        </div>
-                    </article>
+                    <a href="<?php echo e(route('insights.show', $post->id)); ?>" class="text-decoration-none">
+                        <article class="card-soft hoverable overflow-hidden">
+                            <div class="abstract-panel panel-<?php echo e(substr($post->cover_style, -1)); ?>" style="height: 11rem; border-radius: 0;"></div>
+                            <div class="p-4">
+                                <span class="text-brand fw-bold" style="font-size: .68rem; letter-spacing: .15em; text-transform: uppercase;"><?php echo e($post->tag); ?></span>
+                                <h6 class="font-display fw-bold text-navy mt-2"><?php echo e($post->title); ?></h6>
+                                <p class="small text-secondary mb-0"><?php echo e($post->excerpt); ?></p>
+                            </div>
+                        </article>
+                    </a>
                 </div>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
@@ -169,5 +233,25 @@
     </div>
 </section>
 <?php $__env->stopSection(); ?>
+
+<?php $__env->startPush('scripts'); ?>
+<script>
+(function () {
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.slider-dot');
+    if (!slides.length) return;
+    let idx = 0;
+    function show(i) {
+        idx = (i + slides.length) % slides.length;
+        slides.forEach((s, n) => s.classList.toggle('hidden-slide', n !== idx));
+        dots.forEach((d, n) => d.classList.toggle('active', n === idx));
+    }
+    setInterval(() => show(idx + 1), 6000);
+    document.getElementById('slidePrev').addEventListener('click', () => show(idx - 1));
+    document.getElementById('slideNext').addEventListener('click', () => show(idx + 1));
+    dots.forEach((d) => d.addEventListener('click', () => show(+d.dataset.goto)));
+})();
+</script>
+<?php $__env->stopPush(); ?>
 
 <?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\xampp\htdocs\vectalabs\resources\views/home.blade.php ENDPATH**/ ?>

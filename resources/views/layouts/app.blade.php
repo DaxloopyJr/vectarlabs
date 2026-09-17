@@ -10,6 +10,11 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+    <div class="page-loader" id="pageLoader">
+        <span class="loader-mark">V</span>
+        <div class="loader-track"></div>
+    </div>
+
     @include('partials.navbar')
 
     @yield('content')
@@ -17,5 +22,11 @@
     @include('partials.footer')
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        window.addEventListener('load', function () {
+            setTimeout(function () { document.getElementById('pageLoader').classList.add('done'); }, 350);
+        });
+    </script>
+    @stack('scripts')
 </body>
 </html>

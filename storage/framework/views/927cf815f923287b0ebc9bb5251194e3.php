@@ -10,6 +10,11 @@
     <link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
 </head>
 <body>
+    <div class="page-loader" id="pageLoader">
+        <span class="loader-mark">V</span>
+        <div class="loader-track"></div>
+    </div>
+
     <?php echo $__env->make('partials.navbar', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
     <?php echo $__env->yieldContent('content'); ?>
@@ -17,6 +22,12 @@
     <?php echo $__env->make('partials.footer', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        window.addEventListener('load', function () {
+            setTimeout(function () { document.getElementById('pageLoader').classList.add('done'); }, 350);
+        });
+    </script>
+    <?php echo $__env->yieldPushContent('scripts'); ?>
 </body>
 </html>
 <?php /**PATH C:\xampp\htdocs\vectalabs\resources\views/layouts/app.blade.php ENDPATH**/ ?>

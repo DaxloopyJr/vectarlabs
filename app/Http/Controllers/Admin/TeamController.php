@@ -46,14 +46,26 @@ class TeamController extends Controller
 
     private function validateData(Request $request): array
     {
-        return $request->validate([
+        $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'slug' => ['nullable', 'string', 'max:160'],
             'role' => ['required', 'string', 'max:255'],
             'bio' => ['nullable', 'string'],
             'photo_url' => ['nullable', 'string'],
+            'email' => ['nullable', 'string', 'max:255'],
+            'phone' => ['nullable', 'string', 'max:60'],
+            'website' => ['nullable', 'string', 'max:255'],
             'linkedin' => ['nullable', 'string', 'max:255'],
+            'twitter' => ['nullable', 'string', 'max:255'],
+            'github' => ['nullable', 'string', 'max:255'],
             'sort_order' => ['nullable', 'integer'],
             'published' => ['boolean'],
-        ]) + ['published' => $request->boolean('published'), 'sort_order' => $request->integer('sort_order')];
+        ]);
+
+        $data['slug'] = \Illuminate\Support\Str::slug($data['slug'] ?: $data['name']);
+        $data['published'] = $request->boolean('published');
+        $data['sort_order'] = $request->integer('sort_order');
+
+        return $data;
     }
 }

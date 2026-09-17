@@ -23,6 +23,9 @@
             @foreach([
                 ['admin.dashboard', 'grid-1x2-fill', 'Dashboard'],
                 ['admin.services.index', 'tools', 'Services'],
+                ['admin.industries.index', 'building', 'Industries'],
+                ['admin.products.index', 'box-seam', 'Products'],
+                ['admin.works.index', 'kanban', 'Our Work'],
                 ['admin.team.index', 'people', 'Team'],
                 ['admin.posts.index', 'file-text', 'Insights'],
                 ['admin.messages.index', 'inbox', 'Messages'],
@@ -45,7 +48,8 @@
             <a class="navbar-brand font-display fw-bold" href="{{ route('admin.dashboard') }}">Vectarlabs Admin</a>
             <div class="d-flex gap-2 overflow-auto">
                 @foreach([
-                    ['admin.dashboard', 'Dashboard'], ['admin.services.index', 'Services'], ['admin.team.index', 'Team'],
+                    ['admin.dashboard', 'Dashboard'], ['admin.services.index', 'Services'], ['admin.industries.index', 'Industries'],
+                    ['admin.products.index', 'Products'], ['admin.works.index', 'Work'], ['admin.team.index', 'Team'],
                     ['admin.posts.index', 'Insights'], ['admin.messages.index', 'Messages'], ['admin.content.index', 'Content'],
                 ] as [$route, $label])
                     <a class="btn btn-sm {{ request()->routeIs(str_replace('.index', '.*', $route)) ? 'btn-brand border-0' : 'btn-outline-light' }} rounded-pill text-nowrap" href="{{ route($route) }}">{{ $label }}</a>
