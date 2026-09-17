@@ -4,10 +4,10 @@
 
 @section('content')
 @include('partials.dark-hero', [
-    'badge' => 'Insights & Perspectives',
-    'title1' => 'THINKING THAT SHAPES',
-    'title2' => 'BETTER SYSTEMS',
-    'tagline' => 'Field notes on engineering, design, security, and digitization from the team building platforms across East Africa.',
+    'badge' => 'Insights',
+    'title1' => 'Thinking',
+    'title2' => 'that ships.',
+    'tagline' => 'Field notes on engineering, security, design, and digital transformation — written by the team that builds the systems.',
 ])
 
 <section class="py-5">
@@ -36,9 +36,9 @@
 </section>
 
 @include('partials.cta-band', [
-    'title1' => 'HAVE A PROJECT',
-    'title2' => 'IN MIND?',
-    'subtitle' => 'Our best articles come from real engagements. Start yours today.',
-    'buttonText' => 'Book Consultation',
+    'title1' => 'PREFER TO TALK',
+    'title2' => 'INSTEAD?',
+    'subtitle' => 'Reading is good. A working session with our engineers is better — bring your hardest problem.',
+    'buttonText' => 'Book a Session',
 ])
 @endsection

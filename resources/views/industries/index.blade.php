@@ -4,10 +4,10 @@
 
 @section('content')
 @include('partials.dark-hero', [
-    'badge' => 'Sector Expertise',
-    'title1' => 'TECHNOLOGY SHAPED FOR',
-    'title2' => 'YOUR INDUSTRY',
-    'tagline' => 'We build systems around the realities of each sector — not generic templates. Explore the industries we serve.',
+    'badge' => 'Industries We Serve',
+    'title1' => 'Deep expertise in',
+    'title2' => 'your sector.',
+    'tagline' => 'From classrooms to cooperatives, clinics to checkout counters — we build software shaped by the realities of each industry we serve.',
 ])
 
 <section class="py-5">
@@ -34,7 +34,7 @@
 @include('partials.cta-band', [
     'title1' => 'YOUR INDUSTRY',
     'title2' => 'NOT LISTED?',
-    'subtitle' => 'We take on select projects outside our core sectors when the problem is interesting. Tell us about yours.',
-    'buttonText' => 'Start a Conversation',
+    'subtitle' => "If you run operations, we can digitize them. Tell us about your sector and we'll show you what's possible.",
+    'buttonText' => 'Start the Conversation',
 ])
 @endsection

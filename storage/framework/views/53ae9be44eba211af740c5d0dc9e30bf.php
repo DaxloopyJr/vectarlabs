@@ -1,14 +1,12 @@
-@extends('layouts.app')
+<?php $__env->startSection('title', 'Products — Vectarlabs'); ?>
 
-@section('title', 'Products — Vectarlabs')
-
-@section('content')
-@include('partials.dark-hero', [
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('partials.dark-hero', [
     'badge' => 'Our Products',
     'title1' => 'Software products,',
     'title2' => 'ready to deploy.',
     'tagline' => 'Battle-tested platforms built by Vectarlabs — available as managed SaaS subscriptions or standalone licenses you run on your own infrastructure.',
-])
+], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
 <section class="py-5">
     <div class="container" style="max-width: 72rem;">
@@ -30,26 +28,28 @@
             </div>
         </div>
         <div class="row g-4 mt-2">
-            @foreach($products as $p)
+            <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="col-md-6">
                     <div class="card-soft hoverable p-4">
                         <div class="d-flex justify-content-between align-items-start gap-3">
-                            <h5 class="font-display fw-bold text-navy mb-0">{{ $p->name }}</h5>
-                            <span class="type-badge {{ $p->type }} flex-shrink-0">{{ $p->isSaas() ? 'SaaS' : 'Standalone' }}</span>
+                            <h5 class="font-display fw-bold text-navy mb-0"><?php echo e($p->name); ?></h5>
+                            <span class="type-badge <?php echo e($p->type); ?> flex-shrink-0"><?php echo e($p->isSaas() ? 'SaaS' : 'Standalone'); ?></span>
                         </div>
-                        <p class="text-brand fw-semibold small mt-1 mb-2">{{ $p->tagline }}</p>
-                        <p class="small text-secondary mb-0">{{ $p->description }}</p>
+                        <p class="text-brand fw-semibold small mt-1 mb-2"><?php echo e($p->tagline); ?></p>
+                        <p class="small text-secondary mb-0"><?php echo e($p->description); ?></p>
                     </div>
                 </div>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
     </div>
 </section>
 
-@include('partials.cta-band', [
+<?php echo $__env->make('partials.cta-band', [
     'title1' => 'NEED SOMETHING',
     'title2' => 'CUSTOM-BUILT?',
     'subtitle' => 'If none of our off-the-shelf products fits exactly, we design and build bespoke software around your process.',
     'buttonText' => 'Talk to Us',
-])
-@endsection
+], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\xampp\htdocs\vectalabs\resources\views/products/index.blade.php ENDPATH**/ ?>
