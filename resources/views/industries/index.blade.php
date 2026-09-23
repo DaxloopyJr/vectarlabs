@@ -3,16 +3,20 @@
 @section('title', 'Industries — Vectarlabs')
 
 @section('content')
+@php($S = fn (string $k, string $d = '') => \App\Models\Setting::get($k, $d))
+
+@include('partials.breadcrumbs', ['crumbs' => [['label' => 'Industries']], 'dark' => true])
+
 @include('partials.dark-hero', [
-    'badge' => 'Industries We Serve',
-    'title1' => 'Deep expertise in',
-    'title2' => 'your sector.',
-    'tagline' => 'From classrooms to cooperatives, clinics to checkout counters — we build software shaped by the realities of each industry we serve.',
+    'badge' => $S('industries.hero.badge', 'Industries We Serve'),
+    'title1' => $S('industries.hero.title1', 'Deep expertise in'),
+    'title2' => $S('industries.hero.title2', 'your sector.'),
+    'tagline' => $S('industries.hero.tagline', 'From classrooms to cooperatives, clinics to checkout counters — we build software shaped by the realities of each industry we serve.'),
 ])
 
 <section class="py-5">
     <div class="container" style="max-width: 72rem;">
-        <p class="section-marker">Industries we serve</p>
+        <p class="section-marker">{{ $S('industries.marker', 'Industries we serve') }}</p>
         <div class="row g-4 mt-2">
             @foreach($industries as $ind)
                 <div class="col-md-6 col-lg-4">

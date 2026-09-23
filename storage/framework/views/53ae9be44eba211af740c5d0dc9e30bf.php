@@ -1,16 +1,20 @@
 <?php $__env->startSection('title', 'Products — Vectarlabs'); ?>
 
 <?php $__env->startSection('content'); ?>
+<?php ($S = fn (string $k, string $d = '') => \App\Models\Setting::get($k, $d)); ?>
+
+<?php echo $__env->make('partials.breadcrumbs', ['crumbs' => [['label' => 'Products']], 'dark' => true], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+
 <?php echo $__env->make('partials.dark-hero', [
-    'badge' => 'Our Products',
-    'title1' => 'Software products,',
-    'title2' => 'ready to deploy.',
-    'tagline' => 'Battle-tested platforms built by Vectarlabs — available as managed SaaS subscriptions or standalone licenses you run on your own infrastructure.',
+    'badge' => $S('products.hero.badge', 'Our Products'),
+    'title1' => $S('products.hero.title1', 'Software products,'),
+    'title2' => $S('products.hero.title2', 'ready to deploy.'),
+    'tagline' => $S('products.hero.tagline', 'Battle-tested platforms built by Vectarlabs — available as managed SaaS subscriptions or standalone licenses you run on your own infrastructure.'),
 ], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
 <section class="py-5">
     <div class="container" style="max-width: 72rem;">
-        <p class="section-marker">Our Products</p>
+        <p class="section-marker"><?php echo e($S('products.marker', 'Our Products')); ?></p>
         <div class="row g-4 mt-2">
             <div class="col-md-6">
                 <div class="card-soft p-4">

@@ -1,6 +1,8 @@
 <?php $__env->startSection('content'); ?>
 <?php ($S = fn (string $k, string $d = '') => \App\Models\Setting::get($k, $d)); ?>
 
+<?php echo $__env->make('partials.breadcrumbs', ['crumbs' => [['label' => 'Contact']], 'dark' => true], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+
 <?php echo $__env->make('partials.dark-hero', [
     'badge' => 'Contact Vectarlabs',
     'title1' => $S('contact.hero.title1', "Let's build something"),
@@ -13,8 +15,8 @@
         <div class="row g-5">
             <div class="col-lg-5">
                 <p class="section-marker">Get in touch</p>
-                <h2 class="display-hero text-navy mt-3" style="font-size: clamp(1.7rem, 3vw, 2.2rem);">Talk directly with our engineering team.</h2>
-                <p class="font-serif-body text-secondary mt-3">No sales middlemen — your inquiry goes straight to the people who will scope and build your platform.</p>
+                <h2 class="display-hero text-navy mt-3" style="font-size: clamp(1.7rem, 3vw, 2.2rem); text-transform: none;"><?php echo e($S('contact.form.title', 'Talk directly with our engineering team.')); ?></h2>
+                <p class="font-serif-body text-secondary mt-3"><?php echo e($S('contact.form.subtitle', 'No sales middlemen — your inquiry goes straight to the people who will scope and build your platform.')); ?></p>
                 <ul class="list-unstyled d-grid gap-4 mt-4">
                     <?php $__currentLoopData = [
                         ['envelope', 'Email', $S('contact.email')],

@@ -1,8 +1,24 @@
-@extends('layouts.app')
+@extends('layouts.app', [
+    'seoTitle' => $post->title . ' — Vectarlabs Insights',
+    'seoDescription' => $post->excerpt,
+    'seoType' => 'article',
+    'seoJsonLd' => [[
+        '@context' => 'https://schema.org',
+        '@type' => 'Article',
+        'headline' => $post->title,
+        'description' => $post->excerpt,
+        'datePublished' => $post->created_at->toAtomString(),
+        'dateModified' => $post->updated_at->toAtomString(),
+        'author' => ['@type' => 'Organization', 'name' => \App\Models\Setting::get('seo.site_name', 'Vectarlabs')],
+        'mainEntityOfPage' => route('insights.show', $post->id),
+    ]],
+])
 
 @section('title', $post->title . ' — Vectarlabs Insights')
 
 @section('content')
+@include('partials.breadcrumbs', ['crumbs' => [['label' => 'Insights', 'url' => route('insights')], ['label' => \Illuminate\Support\Str::limit($post->title, 40)]], 'dark' => true])
+
 <section class="hero-dark" style="padding-bottom: 4rem;">
     <div class="container" style="max-width: 48rem;">
         <div class="d-flex flex-wrap justify-content-center align-items-center gap-3">

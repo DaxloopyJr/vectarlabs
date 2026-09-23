@@ -1,17 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
+@php($S = fn (string $k, string $d = '') => \App\Models\Setting::get($k, $d))
+
+@include('partials.breadcrumbs', ['crumbs' => [['label' => 'Services']], 'dark' => true])
+
 @include('partials.dark-hero', [
-    'badge' => 'What We Do',
-    'title1' => 'OUR',
-    'title2' => 'SERVICES',
-    'tagline' => 'End-to-end digital engineering — from product strategy and design to software development, cloud infrastructure, and managed support.',
+    'badge' => $S('services.hero.badge', 'What We Do'),
+    'title1' => $S('services.hero.title1', 'Our'),
+    'title2' => $S('services.hero.title2', 'services'),
+    'tagline' => $S('services.hero.tagline', 'End-to-end digital engineering — from product strategy and design to software development, cloud infrastructure, and managed support.'),
 ])
 
 <section class="py-5">
     <div class="container" style="max-width: 72rem;">
-        <p class="section-marker">Service Catalog</p>
-        <h2 class="display-hero text-navy mt-3" style="max-width: 42rem; font-size: clamp(1.8rem, 3.5vw, 2.5rem);">Four practices. One accountable engineering partner.</h2>
+        <p class="section-marker">{{ $S('services.marker', 'Service Catalog') }}</p>
+        <h2 class="display-hero text-navy mt-3" style="max-width: 42rem; font-size: clamp(1.8rem, 3.5vw, 2.5rem); text-transform: none;">{{ $S('services.title', 'Four practices. One accountable engineering partner.') }}</h2>
 
         <div class="d-grid gap-4 mt-5">
             @foreach($services as $i => $s)

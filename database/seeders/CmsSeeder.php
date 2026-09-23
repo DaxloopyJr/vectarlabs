@@ -2,12 +2,14 @@
 
 namespace Database\Seeders;
 
+use App\Models\HeroSlide;
 use App\Models\Industry;
 use App\Models\Post;
 use App\Models\Product;
 use App\Models\Service;
 use App\Models\Setting;
 use App\Models\TeamMember;
+use App\Models\Testimonial;
 use App\Models\Work;
 use Illuminate\Database\Seeder;
 
@@ -26,12 +28,28 @@ class CmsSeeder extends Seeder
             'home.stats.1.value' => '25+',  'home.stats.1.label' => 'Projects Delivered',
             'home.stats.2.value' => '99.4%','home.stats.2.label' => 'System Uptime',
             'home.stats.3.value' => '1M+',  'home.stats.3.label' => 'Requests Processed Daily',
+            'home.services.marker' => 'What we do',
             'home.services.title' => 'Tailored tech solutions for modern enterprises',
+            'home.services.subtitle' => 'We partner with ambitious institutions to design, build, and maintain the digital systems their missions depend on.',
+            'home.services.more' => 'Explore all services',
+            'home.sectors.marker' => 'Industries',
             'home.sectors.title' => 'Engineered for high-growth sectors across East Africa',
-            'home.testimonial.quote' => 'Replacing our fragmented legacy tools with a custom-built digital ecosystem completely transformed how our teams operate daily and deliver results.',
-            'home.testimonial.author' => 'Joseph M.',
-            'home.testimonial.role' => 'Operations Director, Education Group',
+            'home.sectors.more' => 'Explore all industries',
+            'home.testimonials.marker' => 'Trusted by technology & operational leaders',
+            'home.stats.1.value' => '25+',  'home.stats.1.label' => 'Projects Delivered',
+            'home.stats.2.value' => '99.4%','home.stats.2.label' => 'System Uptime',
+            'home.stats.3.value' => '1M+',  'home.stats.3.label' => 'Requests Processed Daily',
+            'home.approach.marker' => 'Our approach',
             'home.approach.title' => 'Our approach',
+            'home.approach.step1.title' => 'Operational Audit & Discovery',
+            'home.approach.step1.body' => 'Assess existing workflows, identify structural risks, and map clear digitization goals.',
+            'home.approach.step2.title' => 'Custom Architecture & Integration',
+            'home.approach.step2.body' => 'Design bespoke systems and integrations — including M-Pesa APIs and cloud infrastructure — built for your context.',
+            'home.approach.step3.title' => 'User Training & Onboarding',
+            'home.approach.step3.body' => 'Conduct hands-on workshops and provide clear documentation for smooth adoption.',
+            'home.approach.step4.title' => 'Deployment & Managed Support',
+            'home.approach.step4.body' => 'Go live with cloud hosting, automated backups, and guaranteed high uptime.',
+            'home.approach.button' => 'Start your project',
             'home.cta.title' => "Ready to elevate your institution's digital capabilities?",
             'home.cta.subtitle' => 'Get in touch with Vectarlabs to discuss modern web platforms, school management systems, and cloud infrastructure built precisely around your workflows.',
             'home.cta.button' => 'Book Consultation',
@@ -42,15 +60,124 @@ class CmsSeeder extends Seeder
             'about.stats.1.value' => '150+', 'about.stats.1.label' => 'Enterprise & SMB Clients',
             'about.stats.2.value' => '99.9%','about.stats.2.label' => 'System Uptime & Reliability',
             'about.stats.3.value' => '1M+',  'about.stats.3.label' => 'Daily API Requests Processed',
+            'about.values.title' => 'Our values',
+            'about.values.subtitle' => 'Discover the core principles that drive our engineering team, shape our software design, and guide us in delivering long-term value for our clients.',
+            'about.values.1.icon' => 'cpu',          'about.values.1.title' => 'Technical Innovation',      'about.values.1.body' => 'We leverage modern stacks like React, Next.js, Django, and cloud API integrations to craft high-performance, future-proof platforms.',
+            'about.values.2.icon' => 'flag',         'about.values.2.title' => 'Engineering Excellence',    'about.values.2.body' => 'We enforce high coding standards, clean database design, and robust automated testing to ensure software reliability and security.',
+            'about.values.3.icon' => 'shield-check', 'about.values.3.title' => 'Data Integrity & Privacy',  'about.values.3.body' => 'We prioritize data privacy, rigorous vulnerability assessments, and regulatory compliance to safeguard critical organizational assets.',
+            'about.values.4.icon' => 'people',       'about.values.4.title' => 'Strategic Collaboration',   'about.values.4.body' => 'We work closely with leadership and operational teams to build intuitive user experiences tailored precisely to daily workflows.',
+            'about.values.5.icon' => 'diagram-3',    'about.values.5.title' => 'Scalable Systems',          'about.values.5.body' => 'We design cloud-native architectures optimized for high uptime, easy maintenance, and long-term cost efficiency.',
+            'about.values.6.icon' => 'award',        'about.values.6.title' => 'User-Centric Enablement',   'about.values.6.body' => 'We provide thorough onboarding, complete documentation, and ongoing support so teams adopt new digital tools seamlessly.',
+            'about.insights.title' => 'Insights',
+            'about.insights.subtitle' => 'Stay informed with deep technical articles and software design perspectives.',
+            'services.hero.badge' => 'What We Do',
+            'services.hero.title1' => 'Our',
+            'services.hero.title2' => 'services',
+            'services.hero.tagline' => 'End-to-end digital engineering — from product strategy and design to software development, cloud infrastructure, and managed support.',
+            'services.marker' => 'Service Catalog',
+            'services.title' => 'Four practices. One accountable engineering partner.',
+            'industries.hero.badge' => 'Industries We Serve',
+            'industries.hero.title1' => 'Deep expertise in',
+            'industries.hero.title2' => 'your sector.',
+            'industries.hero.tagline' => 'From classrooms to cooperatives, clinics to checkout counters — we build software shaped by the realities of each industry we serve.',
+            'industries.marker' => 'Industries we serve',
+            'works.hero.badge' => 'Proven Delivery',
+            'works.hero.title1' => 'Work that speaks',
+            'works.hero.title2' => 'in results',
+            'works.hero.tagline' => 'Case studies of platforms we designed, shipped, and still support today — across education, finance, agriculture, health, and enterprise.',
+            'works.marker' => 'Case studies',
+            'products.hero.badge' => 'Our Products',
+            'products.hero.title1' => 'Software products,',
+            'products.hero.title2' => 'ready to deploy.',
+            'products.hero.tagline' => 'Battle-tested platforms built by Vectarlabs — available as managed SaaS subscriptions or standalone licenses you run on your own infrastructure.',
+            'products.marker' => 'Our Products',
+            'insights.hero.badge' => 'Insights',
+            'insights.hero.title1' => 'Thinking',
+            'insights.hero.title2' => 'that ships.',
+            'insights.hero.tagline' => 'Field notes on engineering, security, design, and digital transformation — written by the team that builds the systems.',
+            'team.hero.badge' => 'The People Behind The Platforms',
+            'team.hero.title1' => 'Meet the',
+            'team.hero.title2' => 'team',
+            'team.hero.tagline' => 'A compact senior team of engineers, designers, and cloud specialists — every project led directly by the people who build it.',
             'contact.hero.title1' => "Let's build something",
             'contact.hero.title2' => 'exceptional together.',
             'contact.hero.subtitle' => 'Tell us about your project, platform, or idea — our engineers respond within one business day.',
+            'contact.form.title' => 'Talk directly with our engineering team.',
+            'contact.form.subtitle' => 'No sales middlemen — your inquiry goes straight to the people who will scope and build your platform.',
             'contact.email' => 'hello@vectarlabs.com',
             'contact.phone' => '+254 700 000 000',
             'contact.location' => 'Nairobi, Kenya',
+            'footer.description' => 'Engineering scalable web platforms, bespoke management systems, and cloud architectures for educational institutions and growing enterprises.',
+            'footer.copyright' => '© 2026 Vectarlabs. All rights reserved. Built for school systems & software innovation.',
+            'seo.site_name' => 'Vectarlabs',
+            'seo.default_title' => 'Vectarlabs — Software · Cloud · Design',
+            'seo.default_description' => 'Vectarlabs designs, builds, and maintains web platforms, management systems, mobile applications, and cloud infrastructure for institutions and enterprises across Africa and beyond.',
+            'seo.default_keywords' => 'software development, web platforms, cloud infrastructure, mobile apps, school management systems, Kenya, East Africa',
+            'seo.default_image' => '',
+            'seo.twitter_handle' => '',
+            'seo.social.twitter' => '',
+            'seo.social.linkedin' => '',
+            'seo.social.github' => '',
+            'seo.gsc_verification' => '',
+            'seo.ga4_id' => '',
         ];
         foreach ($settings as $key => $value) {
             Setting::put($key, $value);
+        }
+
+        // ---------------- Hero slides ----------------
+        if (HeroSlide::count() === 0) {
+            $slides = [
+                [
+                    'eyebrow' => 'Software · Cloud · Design',
+                    'title1' => 'Building High-Impact',
+                    'title2' => 'Digital Infrastructure for',
+                    'title3' => 'Growing Enterprises',
+                    'subtitle' => 'We design, develop, and maintain complex web platforms, management systems, and mobile applications for educational institutions, NGOs, and enterprises across Africa and beyond.',
+                    'button_text' => 'Book Consultation',
+                    'button_url' => '/contact',
+                    'chips' => 'Custom Web Platforms, Cloud Infrastructure, Mobile Applications',
+                    'sort_order' => 1,
+                ],
+                [
+                    'eyebrow' => 'Engineering Partner',
+                    'title1' => 'From Spreadsheet Chaos to',
+                    'title2' => 'Reliable Digital Systems',
+                    'title3' => 'That Scale',
+                    'subtitle' => 'We consolidate fragmented tools into secure, well-documented platforms your teams actually enjoy using — with training and support included.',
+                    'button_text' => 'See Our Work',
+                    'button_url' => '/works',
+                    'chips' => 'System Modernization, Data Platforms, Process Automation',
+                    'sort_order' => 2,
+                ],
+                [
+                    'eyebrow' => 'Managed Cloud & Support',
+                    'title1' => 'Zero-Downtime Operations,',
+                    'title2' => 'Monitored Around',
+                    'title3' => 'the Clock',
+                    'subtitle' => 'Cloud hosting, automated backups, security hardening, and 24/7 monitoring — so your institution stays online while you focus on your mission.',
+                    'button_text' => 'Explore Services',
+                    'button_url' => '/services',
+                    'chips' => 'AWS & Kubernetes, 99.9% Uptime, 24/7 Monitoring',
+                    'sort_order' => 3,
+                ],
+            ];
+            foreach ($slides as $slide) {
+                HeroSlide::create($slide + ['published' => true]);
+            }
+        }
+
+        // ---------------- Testimonials ----------------
+        if (Testimonial::count() === 0) {
+            $testimonials = [
+                ['author' => 'Joseph M.', 'role' => 'Operations Director, Education Group', 'quote' => 'Replacing our fragmented legacy tools with a custom-built digital ecosystem completely transformed how our teams operate daily and deliver results.', 'sort_order' => 1],
+                ['author' => 'Wanjiru K.', 'role' => 'ICT Manager, County Health Network', 'quote' => 'Vectarlabs deployed across 23 facilities without a single day of downtime. Their team understood our constraints and built around them.', 'sort_order' => 2],
+                ['author' => 'Peter O.', 'role' => 'General Manager, Retail Chain', 'quote' => 'For the first time, head office sees live stock and margins across all nine branches. Reorder decisions are driven by data, not guesswork.', 'sort_order' => 3],
+                ['author' => 'Amina S.', 'role' => 'Programme Lead, International NGO', 'quote' => 'Donor reports that used to take weeks now generate directly from the platform. The field teams actually enjoy using the offline app.', 'sort_order' => 4],
+            ];
+            foreach ($testimonials as $testimonial) {
+                Testimonial::create($testimonial + ['published' => true]);
+            }
         }
 
         // ---------------- Services ----------------

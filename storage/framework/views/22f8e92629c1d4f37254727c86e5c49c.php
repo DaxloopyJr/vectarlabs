@@ -1,16 +1,20 @@
 <?php $__env->startSection('title', 'Our Work — Vectarlabs'); ?>
 
 <?php $__env->startSection('content'); ?>
+<?php ($S = fn (string $k, string $d = '') => \App\Models\Setting::get($k, $d)); ?>
+
+<?php echo $__env->make('partials.breadcrumbs', ['crumbs' => [['label' => 'Our Work']], 'dark' => true], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+
 <?php echo $__env->make('partials.dark-hero', [
-    'badge' => 'Proven Delivery',
-    'title1' => 'WORK THAT SPEAKS',
-    'title2' => 'IN RESULTS',
-    'tagline' => 'Case studies of platforms we designed, shipped, and still support today — across education, finance, agriculture, health, and enterprise.',
+    'badge' => $S('works.hero.badge', 'Proven Delivery'),
+    'title1' => $S('works.hero.title1', 'Work that speaks'),
+    'title2' => $S('works.hero.title2', 'in results'),
+    'tagline' => $S('works.hero.tagline', 'Case studies of platforms we designed, shipped, and still support today — across education, finance, agriculture, health, and enterprise.'),
 ], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
 <section class="py-5">
     <div class="container" style="max-width: 72rem;">
-        <p class="section-marker">Case studies</p>
+        <p class="section-marker"><?php echo e($S('works.marker', 'Case studies')); ?></p>
         <div class="row g-4 mt-2">
             <?php $__currentLoopData = $works; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $w): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="col-md-6">

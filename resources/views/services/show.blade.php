@@ -1,6 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.app', ['seoDescription' => $service->tagline])
 
 @section('content')
+@include('partials.breadcrumbs', ['crumbs' => [['label' => 'Services', 'url' => route('services')], ['label' => \Illuminate\Support\Str::limit($service->title_line1.' '.$service->title_line2, 40)]], 'dark' => true])
+
 @include('partials.dark-hero', [
     'badge' => $service->badge,
     'title1' => $service->title_line1,

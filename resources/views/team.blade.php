@@ -1,11 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
+@php($S = fn (string $k, string $d = '') => \App\Models\Setting::get($k, $d))
+
+@include('partials.breadcrumbs', ['crumbs' => [['label' => 'Team']], 'dark' => true])
+
 @include('partials.dark-hero', [
-    'badge' => 'The People Behind The Platforms',
-    'title1' => 'MEET THE',
-    'title2' => 'TEAM',
-    'tagline' => 'A compact senior team of engineers, designers, and cloud specialists — every project led directly by the people who build it.',
+    'badge' => $S('team.hero.badge', 'The People Behind The Platforms'),
+    'title1' => $S('team.hero.title1', 'Meet the'),
+    'title2' => $S('team.hero.title2', 'team'),
+    'tagline' => $S('team.hero.tagline', 'A compact senior team of engineers, designers, and cloud specialists — every project led directly by the people who build it.'),
 ])
 
 <section class="py-5">
@@ -16,9 +20,9 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="card-soft hoverable p-4 text-center">
                         @if($m->photo_url)
-                            <img src="{{ $m->photo_url }}" alt="{{ $m->name }}" class="rounded-4" style="width: 120px; height: 120px; object-fit: cover;">
+                            <img src="{{ $m->photo_url }}" alt="{{ $m->name }}, {{ $m->role }} at Vectarlabs" class="rounded-2" style="width: 200px; height: 200px; object-fit: cover;" loading="lazy" decoding="async" width="200" height="200">
                         @else
-                            <span class="avatar-initials {{ $i % 2 ? 'alt' : '' }}" style="width: 120px; height: 120px; font-size: 2.2rem;">{{ $m->initials() }}</span>
+                            <span class="avatar-initials {{ $i % 2 ? 'alt' : '' }}" style="width: 200px; height: 200px; font-size: 3.4rem;">{{ $m->initials() }}</span>
                         @endif
                         <h5 class="font-display fw-bold text-navy mt-3 mb-0">{{ $m->name }}</h5>
                         <p class="text-brand fw-bold text-uppercase mb-2" style="font-size: .72rem; letter-spacing: .12em;">{{ $m->role }}</p>

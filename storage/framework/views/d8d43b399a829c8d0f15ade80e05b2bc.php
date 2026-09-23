@@ -1,14 +1,16 @@
 <?php $__env->startSection('title', $member->name . ' — Vectarlabs Team'); ?>
 
 <?php $__env->startSection('content'); ?>
+<?php echo $__env->make('partials.breadcrumbs', ['crumbs' => [['label' => 'Team', 'url' => route('team')], ['label' => $member->name]], 'dark' => true], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+
 <section class="hero-dark" style="padding-bottom: 4rem;">
     <div class="container">
         <span class="hero-badge">Team Member</span>
         <div class="mt-4">
             <?php if($member->photo_url): ?>
-                <img src="<?php echo e($member->photo_url); ?>" alt="<?php echo e($member->name); ?>" class="rounded-4 border border-2 border-light" style="width: 120px; height: 120px; object-fit: cover;">
+                <img src="<?php echo e($member->photo_url); ?>" alt="<?php echo e($member->name); ?>, <?php echo e($member->role); ?> at Vectarlabs" class="rounded-2 border border-2 border-light" style="width: 240px; height: 240px; object-fit: cover;" width="240" height="240" fetchpriority="high">
             <?php else: ?>
-                <span class="avatar-initials" style="width: 120px; height: 120px; font-size: 2.4rem;"><?php echo e($member->initials()); ?></span>
+                <span class="avatar-initials" style="width: 240px; height: 240px; font-size: 4.5rem;"><?php echo e($member->initials()); ?></span>
             <?php endif; ?>
         </div>
         <h1 class="display-hero text-white mx-auto mt-4" style="font-size: clamp(2rem, 5vw, 3.4rem);"><?php echo e($member->name); ?></h1>
@@ -43,4 +45,4 @@
 ], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\xampp\htdocs\vectalabs\resources\views/team/show.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.app', ['seoDescription' => \Illuminate\Support\Str::limit($member->bio, 155)], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\xampp\htdocs\vectalabs\resources\views/team/show.blade.php ENDPATH**/ ?>

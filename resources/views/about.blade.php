@@ -3,7 +3,9 @@
 @section('content')
 @php($S = fn (string $k, string $d = '') => \App\Models\Setting::get($k, $d))
 
-<section class="text-center" style="padding: 11rem 0 4rem;">
+@include('partials.breadcrumbs', ['crumbs' => [['label' => 'About Us']]])
+
+<section class="text-center" style="padding: 4rem 0 4rem;">
     <div class="container">
         <p class="text-secondary fw-bold" style="font-size: .72rem; letter-spacing: .25em; text-transform: uppercase;">{{ $S('about.hero.eyebrow', 'The Vectarlabs Story') }}</p>
         <h1 class="display-hero text-navy mx-auto mt-4" style="max-width: 46rem; font-size: clamp(2rem, 4.5vw, 3rem);">
@@ -28,24 +30,16 @@
 
 <section class="py-5">
     <div class="container" style="max-width: 72rem;">
-        <h2 class="display-hero text-navy" style="font-size: 2rem;">Our values</h2>
+        <h2 class="display-hero text-navy" style="font-size: 2rem; text-transform: none;">{{ $S('about.values.title', 'Our values') }}</h2>
         <p class="font-serif-body text-secondary mt-2" style="max-width: 36rem;">
-            Discover the core principles that drive our engineering team, shape our software design,
-            and guide us in delivering long-term value for our clients.
+            {{ $S('about.values.subtitle', 'Discover the core principles that drive our engineering team, shape our software design, and guide us in delivering long-term value for our clients.') }}
         </p>
         <div class="row g-5 mt-2">
-            @foreach([
-                ['cpu', 'Technical Innovation', 'We leverage modern stacks like React, Next.js, Django, and cloud API integrations to craft high-performance, future-proof platforms.'],
-                ['flag', 'Engineering Excellence', 'We enforce high coding standards, clean database design, and robust automated testing to ensure software reliability and security.'],
-                ['shield-check', 'Data Integrity & Privacy', 'We prioritize data privacy, rigorous vulnerability assessments, and regulatory compliance to safeguard critical organizational assets.'],
-                ['people', 'Strategic Collaboration', 'We work closely with leadership and operational teams to build intuitive user experiences tailored precisely to daily workflows.'],
-                ['diagram-3', 'Scalable Systems', 'We design cloud-native architectures optimized for high uptime, easy maintenance, and long-term cost efficiency.'],
-                ['award', 'User-Centric Enablement', 'We provide thorough onboarding, complete documentation, and ongoing support so teams adopt new digital tools seamlessly.'],
-            ] as [$icon, $title, $body])
+            @foreach([1, 2, 3, 4, 5, 6] as $i)
                 <div class="col-md-6 col-lg-4">
-                    <span class="icon-chip"><i class="bi bi-{{ $icon }}"></i></span>
-                    <h6 class="font-display fw-bold text-navy mt-3">{{ $title }}</h6>
-                    <p class="small text-secondary">{{ $body }}</p>
+                    <span class="icon-chip"><i class="bi bi-{{ $S("about.values.$i.icon", 'cpu') }}"></i></span>
+                    <h6 class="font-display fw-bold text-navy mt-3">{{ $S("about.values.$i.title") }}</h6>
+                    <p class="small text-secondary">{{ $S("about.values.$i.body") }}</p>
                 </div>
             @endforeach
         </div>
@@ -54,8 +48,8 @@
 
 <section class="py-5 border-top" style="background: rgba(255,255,255,.6);">
     <div class="container" style="max-width: 72rem;">
-        <h2 class="display-hero text-navy" style="font-size: 2rem;">Insights</h2>
-        <p class="font-serif-body text-secondary mt-2">Stay informed with deep technical articles and software design perspectives.</p>
+        <h2 class="display-hero text-navy" style="font-size: 2rem; text-transform: none;">{{ $S('about.insights.title', 'Insights') }}</h2>
+        <p class="font-serif-body text-secondary mt-2">{{ $S('about.insights.subtitle', 'Stay informed with deep technical articles and software design perspectives.') }}</p>
         <div class="row g-4 mt-2">
             @foreach($posts as $post)
                 <div class="col-md-6">

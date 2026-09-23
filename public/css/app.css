@@ -9,11 +9,11 @@
 body {
     background: var(--cream);
     color: var(--navy);
-    font-family: "Inter", system-ui, sans-serif;
+    font-family: "Bahnschrift", "Segoe UI", system-ui, sans-serif;
 }
 
-.font-display { font-family: "Archivo", "Inter", sans-serif; }
-.font-serif-body { font-family: "Source Serif 4", Georgia, serif; }
+.font-display { font-family: "Bahnschrift", "Segoe UI", system-ui, sans-serif; }
+.font-serif-body { font-family: "Bahnschrift", "Segoe UI", system-ui, sans-serif; }
 .text-brand { color: var(--brand) !important; }
 .bg-brand { background: var(--brand) !important; }
 .bg-navy { background: var(--navy) !important; }
@@ -22,7 +22,7 @@ body {
 .text-navy { color: var(--navy) !important; }
 
 .display-hero {
-    font-family: "Archivo", sans-serif;
+    font-family: "Bahnschrift", "Segoe UI", sans-serif;
     font-weight: 900;
     letter-spacing: -0.02em;
     line-height: 1.03;
@@ -48,7 +48,7 @@ body {
     letter-spacing: .2em;
     text-transform: uppercase;
     color: rgba(255,255,255,.8);
-    font-family: "Archivo", sans-serif;
+    font-family: "Bahnschrift", "Segoe UI", sans-serif;
 }
 .hero-badge::before {
     content: "";
@@ -62,11 +62,11 @@ body {
     align-items: center;
     gap: .5rem;
     border: 0;
-    border-radius: 999px;
+    border-radius: 10px;
     padding: .9rem 1.9rem;
     background: linear-gradient(135deg, #ff7a1f, #ff5f0f);
     color: #fff !important;
-    font-family: "Archivo", sans-serif;
+    font-family: "Bahnschrift", "Segoe UI", sans-serif;
     font-size: .78rem;
     font-weight: 700;
     letter-spacing: .14em;
@@ -81,12 +81,12 @@ body {
     display: inline-flex;
     align-items: center;
     gap: .5rem;
-    border-radius: 999px;
+    border-radius: 10px;
     border: 0;
     padding: .55rem 1.4rem;
     background: #14161c;
     color: #fff !important;
-    font-family: "Archivo", sans-serif;
+    font-family: "Bahnschrift", "Segoe UI", sans-serif;
     font-size: .72rem;
     font-weight: 700;
     letter-spacing: .14em;
@@ -99,7 +99,7 @@ body {
     display: flex;
     align-items: center;
     gap: .55rem;
-    font-family: "Archivo", sans-serif;
+    font-family: "Bahnschrift", "Segoe UI", sans-serif;
     font-size: .72rem;
     font-weight: 700;
     letter-spacing: .22em;
@@ -116,7 +116,7 @@ body {
 
 .card-soft {
     border: 1px solid rgba(0,0,0,.06);
-    border-radius: 1rem;
+    border-radius: .5rem;
     background: #fff;
     box-shadow: 0 2px 20px -8px rgba(11,16,32,.08);
     height: 100%;
@@ -136,18 +136,49 @@ body {
 }
 
 .navbar-pill {
-    border-radius: 999px;
+    border-radius: 14px;
     background: rgba(255,255,255,.95);
     box-shadow: 0 10px 30px -10px rgba(0,0,0,.15);
     backdrop-filter: blur(8px);
 }
 .navbar-pill .nav-link {
-    font-family: "Archivo", sans-serif;
-    font-size: .8rem;
+    position: relative;
+    font-family: "Bahnschrift", "Segoe UI", sans-serif;
+    font-size: .95rem;
     font-weight: 600;
     color: rgba(11,16,32,.8);
+    padding: .55rem .8rem;
 }
 .navbar-pill .nav-link:hover, .navbar-pill .nav-link.active { color: var(--brand); }
+.navbar-pill .nav-link.active::after {
+    content: "";
+    position: absolute;
+    left: .8rem; right: .8rem; bottom: .15rem;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--brand);
+}
+.navbar-pill .dropdown-menu {
+    border-radius: .5rem;
+    padding: .5rem;
+    margin-top: .5rem;
+}
+.navbar-pill .dropdown-item {
+    font-family: "Bahnschrift", "Segoe UI", sans-serif;
+    font-size: .9rem;
+    font-weight: 600;
+    color: rgba(11,16,32,.8);
+    border-radius: .35rem;
+    padding: .55rem .9rem;
+}
+.navbar-pill .dropdown-item:hover { background: #f3efe8; color: var(--brand); }
+.navbar-pill .dropdown-item.active { background: #ffede1; color: var(--brand); }
+.list-group-item.active {
+    background: #ffede1;
+    border-color: rgba(0,0,0,.05);
+    color: var(--brand);
+    font-weight: 700;
+}
 
 .logo-mark {
     display: inline-flex;
@@ -157,7 +188,7 @@ body {
     border-radius: .45rem;
     background: linear-gradient(135deg, #ff7a1f, #ff5f0f);
     color: #fff;
-    font-family: "Archivo", sans-serif;
+    font-family: "Bahnschrift", "Segoe UI", sans-serif;
     font-weight: 900;
     font-size: 1.05rem;
     text-decoration: none;
@@ -173,7 +204,7 @@ body {
 .abstract-panel {
     position: relative;
     overflow: hidden;
-    border-radius: 1rem;
+    border-radius: .5rem;
     min-height: 100%;
 }
 .abstract-panel::after {
@@ -188,7 +219,7 @@ body {
 .panel-c { background: linear-gradient(135deg,#2a1a3f,#0b1020 60%), radial-gradient(circle at 60% 40%, rgba(255,107,26,.28), transparent 50%); background-blend-mode: screen; }
 
 .stat-value {
-    font-family: "Archivo", sans-serif;
+    font-family: "Bahnschrift", "Segoe UI", sans-serif;
     font-weight: 900;
     font-size: 2.8rem;
     color: var(--brand);
@@ -215,6 +246,19 @@ body {
 .admin-sidebar .nav-link:hover { color: #fff; background: rgba(255,255,255,.05); }
 .admin-sidebar .nav-link.active { background: var(--brand); color: #fff; }
 
+/* Admin content tabs */
+.nav-pills .nav-link {
+    color: rgba(11,16,32,.7);
+    background: #fff;
+    border: 1px solid rgba(0,0,0,.06);
+    border-radius: 8px;
+    font-size: .8rem;
+    font-weight: 600;
+    padding: .45rem .9rem;
+}
+.nav-pills .nav-link:hover { color: var(--brand); }
+.nav-pills .nav-link.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+
 .form-control:focus, .form-select:focus {
     border-color: var(--brand);
     box-shadow: 0 0 0 .2rem rgba(255,107,26,.15);
@@ -226,9 +270,9 @@ body {
     align-items: center;
     justify-content: center;
     width: 64px; height: 64px;
-    border-radius: 1rem;
+    border-radius: .5rem;
     color: #fff;
-    font-family: "Archivo", sans-serif;
+    font-family: "Bahnschrift", "Segoe UI", sans-serif;
     font-weight: 900;
     font-size: 1.3rem;
     background: linear-gradient(135deg, #ff7a1f, #ff5f0f);
@@ -339,7 +383,7 @@ body {
     border-radius: .8rem;
     background: var(--brand);
     color: #fff;
-    font-family: "Archivo", sans-serif;
+    font-family: "Bahnschrift", "Segoe UI", sans-serif;
     font-weight: 900;
     font-size: 1.5rem;
     animation: loader-pulse 1s ease-in-out infinite;
@@ -359,3 +403,43 @@ body {
     animation: loader-slide 1s ease-in-out infinite;
 }
 @keyframes loader-slide { 0% { transform: translateX(-100%); } 100% { transform: translateX(300%); } }
+
+/* ---------- V4: sliders, breadcrumb, heading style ---------- */
+.display-hero { text-transform: none; }
+
+.slider-arrow-light {
+    border-color: rgba(11,16,32,.18);
+    color: rgba(11,16,32,.6);
+    background: #fff;
+}
+.slider-arrow-light:hover { border-color: var(--brand); color: var(--brand); }
+
+.slider-dot-light { background: rgba(11,16,32,.18); }
+.slider-dot-light.active { background: var(--brand); width: 2rem; }
+
+.t-track { transition: transform .5s ease; }
+.t-slide { width: 100%; }
+@media (min-width: 992px) { .t-slide { width: 50%; } }
+
+.breadcrumb-bar {
+    padding: 7.5rem 0 1rem;
+    font-family: "Bahnschrift", "Segoe UI", sans-serif;
+}
+.breadcrumb-bar .breadcrumb { margin-bottom: 0; }
+.breadcrumb-bar .breadcrumb-item,
+.breadcrumb-bar .breadcrumb-item a {
+    font-size: .82rem;
+    font-weight: 600;
+    letter-spacing: .04em;
+    color: rgba(11,16,32,.55);
+    text-decoration: none;
+}
+.breadcrumb-bar .breadcrumb-item a:hover { color: var(--brand); }
+.breadcrumb-bar .breadcrumb-item.active { color: var(--navy); }
+.breadcrumb-bar .breadcrumb-item + .breadcrumb-item::before { color: rgba(11,16,32,.35); }
+.breadcrumb-bar.on-dark { padding-bottom: 0; position: relative; z-index: 2; margin-bottom: -3rem; }
+.breadcrumb-bar.on-dark .breadcrumb-item,
+.breadcrumb-bar.on-dark .breadcrumb-item a { color: rgba(255,255,255,.55); }
+.breadcrumb-bar.on-dark .breadcrumb-item a:hover { color: var(--brand); }
+.breadcrumb-bar.on-dark .breadcrumb-item.active { color: #fff; }
+.breadcrumb-bar.on-dark .breadcrumb-item + .breadcrumb-item::before { color: rgba(255,255,255,.3); }

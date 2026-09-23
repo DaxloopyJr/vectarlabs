@@ -3,6 +3,8 @@
 @section('content')
 @php($S = fn (string $k, string $d = '') => \App\Models\Setting::get($k, $d))
 
+@include('partials.breadcrumbs', ['crumbs' => [['label' => 'Contact']], 'dark' => true])
+
 @include('partials.dark-hero', [
     'badge' => 'Contact Vectarlabs',
     'title1' => $S('contact.hero.title1', "Let's build something"),
@@ -15,8 +17,8 @@
         <div class="row g-5">
             <div class="col-lg-5">
                 <p class="section-marker">Get in touch</p>
-                <h2 class="display-hero text-navy mt-3" style="font-size: clamp(1.7rem, 3vw, 2.2rem);">Talk directly with our engineering team.</h2>
-                <p class="font-serif-body text-secondary mt-3">No sales middlemen — your inquiry goes straight to the people who will scope and build your platform.</p>
+                <h2 class="display-hero text-navy mt-3" style="font-size: clamp(1.7rem, 3vw, 2.2rem); text-transform: none;">{{ $S('contact.form.title', 'Talk directly with our engineering team.') }}</h2>
+                <p class="font-serif-body text-secondary mt-3">{{ $S('contact.form.subtitle', 'No sales middlemen — your inquiry goes straight to the people who will scope and build your platform.') }}</p>
                 <ul class="list-unstyled d-grid gap-4 mt-4">
                     @foreach([
                         ['envelope', 'Email', $S('contact.email')],

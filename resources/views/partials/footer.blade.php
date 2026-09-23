@@ -1,15 +1,15 @@
 @php($footServices = \App\Models\Service::published()->get())
+@php($Sf = fn (string $k, string $d = '') => \App\Models\Setting::get($k, $d))
 <footer class="footer-dark pt-5">
     <div class="container" style="max-width: 72rem;">
         <div class="row g-5 pb-5">
             <div class="col-md-4">
                 <a href="{{ route('home') }}" class="d-flex align-items-center gap-2 text-decoration-none">
-                    <span class="logo-mark">V</span>
+                    @include('partials.logo', ['height' => 34])
                     <span class="font-display fw-bold text-white">Vectarlabs</span>
                 </a>
                 <p class="mt-3 font-serif-body" style="max-width: 20rem;">
-                    Engineering scalable web platforms, bespoke management systems, and cloud
-                    architectures for educational institutions and growing enterprises.
+                    {{ $Sf('footer.description', 'Engineering scalable web platforms, bespoke management systems, and cloud architectures for educational institutions and growing enterprises.') }}
                 </p>
             </div>
             <div class="col-6 col-md-2">
@@ -42,11 +42,11 @@
             </div>
         </div>
         <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-3 py-4 border-top border-secondary small">
-            <span>© 2026 Vectarlabs. All rights reserved. Built for school systems &amp; software innovation.</span>
+            <span>{!! $Sf('footer.copyright', '© 2026 Vectarlabs. All rights reserved. Built for school systems &amp; software innovation.') !!}</span>
             <span class="d-flex gap-3">
-                <a href="#"><i class="bi bi-twitter-x"></i></a>
-                <a href="#"><i class="bi bi-linkedin"></i></a>
-                <a href="#"><i class="bi bi-github"></i></a>
+                @if($Sf('seo.social.twitter'))<a href="{{ $Sf('seo.social.twitter') }}" target="_blank" rel="noopener" aria-label="Twitter / X"><i class="bi bi-twitter-x"></i></a>@endif
+                @if($Sf('seo.social.linkedin'))<a href="{{ $Sf('seo.social.linkedin') }}" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>@endif
+                @if($Sf('seo.social.github'))<a href="{{ $Sf('seo.social.github') }}" target="_blank" rel="noopener" aria-label="GitHub"><i class="bi bi-github"></i></a>@endif
             </span>
         </div>
     </div>

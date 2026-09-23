@@ -1,16 +1,18 @@
-@extends('layouts.app')
+@extends('layouts.app', ['seoDescription' => \Illuminate\Support\Str::limit($member->bio, 155)])
 
 @section('title', $member->name . ' — Vectarlabs Team')
 
 @section('content')
+@include('partials.breadcrumbs', ['crumbs' => [['label' => 'Team', 'url' => route('team')], ['label' => $member->name]], 'dark' => true])
+
 <section class="hero-dark" style="padding-bottom: 4rem;">
     <div class="container">
         <span class="hero-badge">Team Member</span>
         <div class="mt-4">
             @if($member->photo_url)
-                <img src="{{ $member->photo_url }}" alt="{{ $member->name }}" class="rounded-4 border border-2 border-light" style="width: 120px; height: 120px; object-fit: cover;">
+                <img src="{{ $member->photo_url }}" alt="{{ $member->name }}, {{ $member->role }} at Vectarlabs" class="rounded-2 border border-2 border-light" style="width: 240px; height: 240px; object-fit: cover;" width="240" height="240" fetchpriority="high">
             @else
-                <span class="avatar-initials" style="width: 120px; height: 120px; font-size: 2.4rem;">{{ $member->initials() }}</span>
+                <span class="avatar-initials" style="width: 240px; height: 240px; font-size: 4.5rem;">{{ $member->initials() }}</span>
             @endif
         </div>
         <h1 class="display-hero text-white mx-auto mt-4" style="font-size: clamp(2rem, 5vw, 3.4rem);">{{ $member->name }}</h1>

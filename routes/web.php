@@ -15,6 +15,8 @@ use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
 // ---------------- Public website ----------------
+Route::get('/sitemap.xml', [\App\Http\Controllers\SitemapController::class, 'index'])->name('sitemap');
+Route::get('/robots.txt', [\App\Http\Controllers\SitemapController::class, 'robots'])->name('robots');
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/services', [PageController::class, 'services'])->name('services');
@@ -32,6 +34,7 @@ Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 // ---------------- Admin auth ----------------
+Route::get('/login', fn () => redirect()->route('admin.login'))->name('login');
 Route::get('/admin/login', [AuthController::class, 'showLogin'])->name('admin.login');
 Route::post('/admin/login', [AuthController::class, 'login'])->name('admin.login.store');
 Route::post('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
@@ -45,6 +48,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::resource('works', WorkController::class)->except(['show']);
     Route::resource('team', TeamController::class)->except(['show']);
     Route::resource('posts', PostController::class)->except(['show']);
+    Route::resource('slides', \App\Http\Controllers\Admin\HeroSlideController::class)->except(['show'])->parameters(['slides' => 'slide']);
+    Route::resource('testimonials', \App\Http\Controllers\Admin\TestimonialController::class)->except(['show']);
     Route::get('messages', [MessageController::class, 'index'])->name('messages.index');
     Route::post('messages/{message}/read', [MessageController::class, 'markRead'])->name('messages.read');
     Route::delete('messages/{message}', [MessageController::class, 'destroy'])->name('messages.destroy');

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HeroSlide;
 use App\Models\Industry;
 use App\Models\Post;
 use App\Models\Product;
 use App\Models\Service;
 use App\Models\TeamMember;
+use App\Models\Testimonial;
 use App\Models\Work;
 
 class PageController extends Controller
@@ -17,6 +19,8 @@ class PageController extends Controller
             'services' => Service::published()->get(),
             'industries' => Industry::published()->take(4)->get(),
             'posts' => Post::published()->take(3)->get(),
+            'slides' => HeroSlide::published()->get(),
+            'testimonials' => Testimonial::published()->get(),
         ]);
     }
 

@@ -1,8 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.app', ['seoDescription' => $work->summary])
 
 @section('title', $work->title . ' — Vectarlabs')
 
 @section('content')
+@include('partials.breadcrumbs', ['crumbs' => [['label' => 'Our Work', 'url' => route('works')], ['label' => \Illuminate\Support\Str::limit($work->title, 40)]], 'dark' => true])
+
 <section class="hero-dark">
     <div class="container">
         <div class="d-flex flex-wrap justify-content-center gap-2">

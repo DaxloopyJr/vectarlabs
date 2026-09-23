@@ -6,8 +6,8 @@
     <title>@yield('title', 'Admin — Vectarlabs CMS')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @stack('styles')
 </head>
 <body style="background: #f2efe8;">
 <div class="d-flex">
@@ -28,6 +28,8 @@
                 ['admin.works.index', 'kanban', 'Our Work'],
                 ['admin.team.index', 'people', 'Team'],
                 ['admin.posts.index', 'file-text', 'Insights'],
+                ['admin.slides.index', 'images', 'Hero Slides'],
+                ['admin.testimonials.index', 'chat-quote', 'Testimonials'],
                 ['admin.messages.index', 'inbox', 'Messages'],
                 ['admin.content.index', 'sliders', 'Site Content'],
             ] as [$route, $icon, $label])
@@ -50,7 +52,8 @@
                 @foreach([
                     ['admin.dashboard', 'Dashboard'], ['admin.services.index', 'Services'], ['admin.industries.index', 'Industries'],
                     ['admin.products.index', 'Products'], ['admin.works.index', 'Work'], ['admin.team.index', 'Team'],
-                    ['admin.posts.index', 'Insights'], ['admin.messages.index', 'Messages'], ['admin.content.index', 'Content'],
+                    ['admin.posts.index', 'Insights'], ['admin.slides.index', 'Slides'], ['admin.testimonials.index', 'Testimonials'],
+                    ['admin.messages.index', 'Messages'], ['admin.content.index', 'Content'],
                 ] as [$route, $label])
                     <a class="btn btn-sm {{ request()->routeIs(str_replace('.index', '.*', $route)) ? 'btn-brand border-0' : 'btn-outline-light' }} rounded-pill text-nowrap" href="{{ route($route) }}">{{ $label }}</a>
                 @endforeach
@@ -66,5 +69,6 @@
     </main>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+@stack('scripts')
 </body>
 </html>

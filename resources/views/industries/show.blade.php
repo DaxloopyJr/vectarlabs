@@ -1,8 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.app', ['seoDescription' => $industry->summary])
 
 @section('title', $industry->name . ' — Vectarlabs')
 
 @section('content')
+@include('partials.breadcrumbs', ['crumbs' => [['label' => 'Industries', 'url' => route('industries')], ['label' => \Illuminate\Support\Str::limit($industry->name, 40)]], 'dark' => true])
+
 <section class="hero-dark">
     <div class="container">
         <span class="hero-badge">Industry Focus</span>
